@@ -56,27 +56,28 @@ ul {
 
   .icon {
     font-size: 130px;
+    padding: 40px;
     text-shadow: 2px 2px 4px #000000;
   }
 
   .emoji {
-    border: 10px solid;
-    border-color: #5457a6;
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 10px;
-    border-bottom-right-radius: 2px;
-    border-top-left-radius: 2px;
+    transition: 0.2s;
+    border-radius: 50%;
+    background-color: #302a77;
+    padding: 40px;
+    cursor: pointer;
   }
 
   .emoji:hover {
-    border: 10px solid;
-    border-color: #5457a6;
+    border-radius: 50%;
     background-color: #5457a6;
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 10px;
+    padding: 40px;
     cursor: pointer;
+    box-shadow: 2px 2px 4px #000000;
+  }
+
+  .middle-middle {
+    height: 300px;
   }
 
 
@@ -139,6 +140,7 @@ ul {
   span {
     color: #eebb55;
     min-width: 120px;
+    text-shadow: 2px 2px 4px #000000;
   }
 
 .footer {
@@ -210,6 +212,7 @@ ul {
 
   .middle-middle {
     padding-top: 20px;
+    height: 250px;
   }
 
   .middle-top {
@@ -244,6 +247,10 @@ ul {
     display: none;
   }
 
+  .icon {
+    padding: 0;
+  }
+
   .emoji {
     border: none;
     padding: 0;
@@ -251,6 +258,11 @@ ul {
   
   .emoji:hover {
     border: none;
+    padding: 0;
+    border-radius: 0;
+    background-color: #302a77;
+    cursor: pointer;
+    box-shadow: none;
   }
 
   .begin {

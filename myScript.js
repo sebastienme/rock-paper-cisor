@@ -16,6 +16,8 @@ function removeButton () {
     middlediv.classList.toggle('begin');
     middlediv.innerHTML = "Premier à 5!";
     setTimeout(emoji, 3000);
+    setTimeout(playy, 3000);
+
 }
 
 function emoji() {
@@ -26,13 +28,10 @@ function emoji() {
             icon.style.transform = "scale(1.2)";
             setTimeout(()=>{
                 icon.style.transform = "scale(1)";
-             },150)
+             },125)
         })
     });
 };
-
-//wait 17 seconds before enabling the icons
-setTimeout(playy, 3000);
 
 function playy () {    
         icons.forEach((icon) => {
