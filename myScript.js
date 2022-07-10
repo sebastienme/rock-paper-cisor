@@ -40,9 +40,9 @@ function playy () {
                 playOn = playRound(playerSelection, computerPlay());
                 if (playOn[1] <= 5 && playOn[2] <= 5) {
                     computerScore.innerHTML = `${playOn[1]}`;
-                    computerScoreMobile.innerHTML = `${playOn[1]}`;
+                    computerScoreMobile.innerHTML = `&nbsp;${playOn[1]}`;
                     userScore.innerHTML = ` ${playOn[2]}`;
-                    userScoreMobile.innerHTML = ` ${playOn[2]}`;
+                    userScoreMobile.innerHTML = `&nbsp;&nbsp;&nbsp;${playOn[2]}`;
                     middlediv.innerHTML = `${playOn[0]}`;
                     if (playOn[1] >= 5 || playOn[2] >= 5) {
                         middlediv.innerHTML = "La partie est terminée. Merci d'avoir joué à Roche Papier Pinot!";
