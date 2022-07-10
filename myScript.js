@@ -1,3 +1,58 @@
+const start = document.querySelector('#start');
+const middlediv = document.querySelector('.middle-bottom');
+const icons = document.querySelectorAll('.icon');
+const userScore = document.querySelector('.user-score');
+const computerScore = document.querySelector('.computer-score');
+const userScoreMobile = document.querySelector('.user-score-mobile');
+const computerScoreMobile = document.querySelector('.computer-score-mobile');
+const header = document.querySelector('.header');
+let totalCPUScore = 0;
+let totalUserScore = 0;
+
+start.addEventListener('click', removeButton);
+
+function removeButton () {
+    middlediv.removeChild(start);
+    middlediv.classList.toggle('begin');
+    middlediv.innerHTML = "Premier à 5!";
+    setTimeout(emoji, 3000);
+}
+
+function emoji() {
+    icons.forEach((icon) => {
+        icon.classList.toggle('emoji');
+        middlediv.innerHTML = "Go!";
+        icon.addEventListener('click', () => {
+            icon.style.transform = "scale(1.2)";
+            setTimeout(()=>{
+                icon.style.transform = "scale(1)";
+             },150)
+        })
+    });
+};
+
+//wait 17 seconds before enabling the icons
+setTimeout(playy, 3000);
+
+function playy () {    
+        icons.forEach((icon) => {
+            icon.addEventListener('click', () => {
+                playerSelection = icon.getAttribute('id');
+                playOn = playRound(playerSelection, computerPlay());
+                if (playOn[1] <= 5 && playOn[2] <= 5) {
+                    computerScore.innerHTML = `${playOn[1]}`;
+                    computerScoreMobile.innerHTML = `${playOn[1]}`;
+                    userScore.innerHTML = ` ${playOn[2]}`;
+                    userScoreMobile.innerHTML = ` ${playOn[2]}`;
+                    middlediv.innerHTML = `${playOn[0]}`;
+                    if (playOn[1] >= 5 || playOn[2] >= 5) {
+                        middlediv.innerHTML = "La partie est terminée. Merci d'avoir joué à Roche Papier Pinot!";
+                    }
+                }    
+            })
+        })    
+};
+
 function computerPlay () {
     let answer = Math.floor(Math.random() * 3) + 1;
     let choice;
@@ -7,67 +62,46 @@ function computerPlay () {
     } else if (answer == 2) {
         choice = "papier";
     } else {
-        choice = "ciseau";
+        choice = "pinot";
     }
     return choice;
 }
 
 function playRound (playerSelection, computerSelection) {
     let answer;
-    let score;
+    let userScore = 0;
+    let computerScore = 0;
 
     playerSelection = playerSelection.toLowerCase();
-    console.log("COMPUTER: " + computerSelection);
-    console.log("MOI: " + playerSelection);
-
-    
 
     if (playerSelection == computerSelection) {
-        answer = "It's a draw!";
-        score = 0;
+        answer = "Joute nulle!";
     } else if (playerSelection == "roche" && computerSelection == "papier") {
-        answer = "Tu as perdu! Papier bat la roche";
-        score = -1;
-    } else if (playerSelection == "roche" && computerSelection == "ciseau") {
-        answer = "Tu as gagné! La roche bat le ciseau";
-        score = 1;
+        answer = "Doh! Le papier bat la roche";
+        computerScore = 1;
+        
+    } else if (playerSelection == "roche" && computerSelection == "pinot") {
+        answer = "Yessir Miller! La roche éclate le pinot";
+        userScore = 1;
     } else if (playerSelection == "papier" && computerSelection == "roche") {
-        answer = "Tu as gagné! Papier bat la roche";
-        score = 1;
-    } else if (playerSelection == "papier" && computerSelection == "ciseau") {
-        answer = "Tu as perdu! Le ciseau bat le papier";
-        score = -1;
-    } else if (playerSelection == "ciseau" && computerSelection == "roche") {
-        answer = "Tu as perdu! La roche bat le ciseau";
-        score = -1;
-    } else if (playerSelection == "ciseau" && computerSelection == "papier") {
-        answer = "Tu as gagné! Le ciseau bat le papier";
-        score = 1;
+        answer = "Woohoo! Le papier bat la roche";
+        userScore = 1;
+    } else if (playerSelection == "papier" && computerSelection == "pinot") {
+        answer = "Dommage.. Le pinot bat le papier";
+        computerScore = 1;
+    } else if (playerSelection == "pinot" && computerSelection == "roche") {
+        answer = ":( La roche éclate le pinot";
+        computerScore = 1;
+    } else if (playerSelection == "pinot" && computerSelection == "papier") {
+        answer = "Igloo igloo! Le pinot bat le papier";
+        userScore = 1;
     }
-    console.log(answer);
-    return [answer, score]; 
+    totalCPUScore = totalCPUScore + computerScore;
+    totalUserScore = totalUserScore + userScore;
+
+    return [answer, totalCPUScore, totalUserScore]; 
 }
 
-function game () {
-    let score = 0;
-
-    for (let i = 0; i < 5; i++) {
-        const computerChoice = computerPlay();
-        const userChoice = prompt("Roche, papier ou ciseau?");
-        
-        let letPlay = playRound(userChoice, computerChoice);
-        
-        score = score + letPlay[1];
-    }
-    
-    if (score > 0) {
-        console.log("YOU WON THE WHOLE GAME!");
-    } else {
-        console.log("YOU LOST!");
-    }
-}
-
-game();
 
 
 
