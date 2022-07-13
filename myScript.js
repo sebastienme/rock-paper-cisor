@@ -6,8 +6,30 @@ const computerScore = document.querySelector('.computer-score');
 const userScoreMobile = document.querySelector('.user-score-mobile');
 const computerScoreMobile = document.querySelector('.computer-score-mobile');
 const header = document.querySelector('.header');
+const title = document.querySelector('.title');
+let newDom = '';
+let animationDelay = 24;
 let totalCPUScore = 0;
 let totalUserScore = 0;
+
+// title animation for desktop
+console.log(title.innerHTML.length);
+function titleAnimation () {
+    for (let i = 0; i < title.innerHTML.length; i++) {
+        newDom += '<span class="char">' + (title.innerText[i] == ' ' ? '&nbsp;' : title.innerText[i])+ '</span>';
+        
+    }
+    title.innerHTML = newDom;
+    
+    let length = title.children.length;
+
+        for(let i = 0; i < length; i++)
+        {
+            title.children[i].style['animation-delay'] = animationDelay * i + 'ms';
+        }
+}
+
+titleAnimation();
 
 start.addEventListener('click', removeButton);
 
